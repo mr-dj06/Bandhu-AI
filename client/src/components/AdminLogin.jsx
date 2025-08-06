@@ -10,7 +10,7 @@ export default function AdminLogin({ onLogin }) {
         e.preventDefault();
         setError("");
         try {
-            const res = await axios.post("http://localhost:5000/api/admin/login", { username, password });
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/admin/login`, { username, password });
             localStorage.setItem("adminToken", res.data.token);
             onLogin();
         } catch (err) {

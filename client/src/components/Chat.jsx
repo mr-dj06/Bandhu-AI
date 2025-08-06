@@ -7,7 +7,7 @@ const sessionId = localStorage.getItem("sessionId") || (() => {
   return id;
 })();
 
-const socket = io("http://localhost:5000", {
+const socket = io(`${import.meta.env.VITE_BACKEND_URL}`, {
   query: { sessionId },
   transports: ['websocket', 'polling'],
   forceNew: true
@@ -74,7 +74,7 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 py-8">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">Chat Assistant</h2>
         
         {/* Connection status */}
@@ -85,7 +85,7 @@ export default function Chat() {
         {/* Test button */}
         <button
           onClick={testConnection}
-          className="w-full mb-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition"
+          className="w-full mb-4 bg-gray-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-gray-600 transition"
         >
           Test Connection
         </button>
@@ -100,9 +100,9 @@ export default function Chat() {
               className={`mb-2 flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`px-4 py-2 rounded-lg max-w-xs ${msg.sender === "user"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-gray-800"
+                className={`px-4 py-2 rounded-xl max-w-xs ${msg.sender === "user"
+                  ? "bg-blue-500 text-white rounded-tr-none"
+                  : "bg-gray-200 text-gray-800 rounded-tl-none"
                   }`}
               >
                 <span className="block text-xs font-semibold mb-1">
@@ -127,7 +127,7 @@ export default function Chat() {
             disabled={!isConnected}
             className={`px-5 py-2 rounded-r transition ${
               isConnected 
-                ? 'bg-blue-500 text-white hover:bg-blue-600' 
+                ? 'bg-blue-500 text-white hover:bg-blue-600 cursor-pointer' 
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >

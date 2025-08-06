@@ -19,7 +19,7 @@ function App() {
         <Link to="/" className="text-white font-semibold hover:underline">User Chat</Link>
         <Link to="/admin" className="text-white font-semibold hover:underline">Admin Dashboard</Link>
         {isAdmin && (
-          <button onClick={handleLogout} className="text-white font-semibold hover:underline ml-4">Logout</button>
+          <button onClick={handleLogout} className="text-white font-semibold hover:underline cursor-pointer ml-4">Logout</button>
         )}
       </nav>
       <Routes>

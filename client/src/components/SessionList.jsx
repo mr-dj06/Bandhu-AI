@@ -9,14 +9,14 @@ export default function SessionList({ onSelect }) {
   useEffect(() => {
     const fetchSessions = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/sessions", config);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/sessions`, config);
         const sessionIds = response.data;
 
         // Fetch details for each session
         const sessionDetails = await Promise.all(
           sessionIds.map(async (sessionId) => {
             try {
-              const chatResponse = await axios.get(`http://localhost:5000/api/chats/${sessionId}`, config);
+              const chatResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/chats/${sessionId}`, config);
               const messages = chatResponse.data;
 
               return {
